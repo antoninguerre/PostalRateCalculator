@@ -11,4 +11,9 @@ public class EnvelopeController {
 
     @Autowired
     private EnvelopeService envelopeService;
+
+
+
+    // The inputs should be RequestParams(int width, int height, int weight, String sizeUnit, String weightUnit)
+    // From that we can create an envelope and send it to the service method
 }
