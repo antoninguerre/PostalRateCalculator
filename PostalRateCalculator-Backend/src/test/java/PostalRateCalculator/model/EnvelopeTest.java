@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
@@ -35,5 +36,13 @@ public class EnvelopeTest {
 
         // Test if the object is present and can be retrieved
         assertTrue(envelopeRepository.findEnvelopeById(envelope.getId()).isPresent());
+        Envelope savedEnvelope = envelopeRepository.findEnvelopeById(envelope.getId()).get();
+
+        // Test if the retrieved object has the correct attributes
+        assertEquals(envelope.getLength(), savedEnvelope.getLength());
+        assertEquals(envelope.getWidth(), savedEnvelope.getWidth());
+        assertEquals(envelope.getWeight(), savedEnvelope.getWeight());
+        assertEquals(envelope.getSizeUnit(), savedEnvelope.getSizeUnit());
+        assertEquals(envelope.getWeightUnit(), savedEnvelope.getWeightUnit());
     }
 }
