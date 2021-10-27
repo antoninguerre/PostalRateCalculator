@@ -18,11 +18,21 @@ public class EnvelopeService {
     @Transactional
     public int calculatePostalRate(Envelope envelope) {
 
-        // Verify that the envelope's width is not smaller than 140mm if the size unit is in millimeters
-        if (envelope.getSizeUnit() == SizeUnit.Millimeters && envelope.getWidth() < 140) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope is not wide enough.");
-        }
+        widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
 
         return 0;
+    }
+
+
+    private static void widthRangeCheck(double width, SizeUnit sizeUnit) {
+        // Verify that the envelope's width is between 90 and 270 mm if the size unit is in millimeters
+        if (sizeUnit == SizeUnit.Millimeters && (width < 90 || 270 < width)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's width is not within the allowed range.");
+        }
+
+        // Verify that the envelope's width is between 5.512 and 10.630 in if the size unit is in inches
+        if (sizeUnit == SizeUnit.Inches && (width < 5.512 || 10.630 < width)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's width is not within the allowed range.");
+        }
     }
 }
