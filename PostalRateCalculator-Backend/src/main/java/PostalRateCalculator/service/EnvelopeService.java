@@ -19,6 +19,7 @@ public class EnvelopeService {
     public int calculatePostalRate(Envelope envelope) {
 
         widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
+        lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
 
         return 0;
     }
@@ -30,9 +31,21 @@ public class EnvelopeService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's width is not within the allowed range.");
         }
 
-        // Verify that the envelope's width is between 5.512 and 10.630 in if the size unit is in inches
-        if (sizeUnit == SizeUnit.Inches && (width < 5.512 || 10.630 < width)) {
+        // Verify that the envelope's width is between 3.543 and 10.630 in if the size unit is in inches
+        if (sizeUnit == SizeUnit.Inches && (width < 3.543 || 10.630 < width)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's width is not within the allowed range.");
+        }
+    }
+
+    private static void lengthRangeCheck(double length, SizeUnit sizeUnit) {
+        // Verify that the envelope's length is between 140 and 380 mm if the size unit is in millimeters
+        if (sizeUnit == SizeUnit.Millimeters && (length < 140 || 380 < length)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's length is not within the allowed range.");
+        }
+
+        // Verify that the envelope's length is between 5.512 and 14.961 in if the size unit is in inches
+        if (sizeUnit == SizeUnit.Inches && (length < 5.512 || 14.961 < length)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's length is not within the allowed range.");
         }
     }
 }
