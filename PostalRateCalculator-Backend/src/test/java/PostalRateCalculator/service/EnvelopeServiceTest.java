@@ -38,6 +38,12 @@ public class EnvelopeServiceTest {
         when(envelopeRepository.save(any(Envelope.class))).thenAnswer(returnParameterAsAnswer);
     }
 
+
+
+    //------------------------
+    // WIDTH TESTS
+    //------------------------
+
     @Test
     public void testEnvelopeTooSmallWidthInMillimeters() {
         // Initialize variables (including a too small width) and create an instance of an envelope
@@ -89,6 +95,71 @@ public class EnvelopeServiceTest {
                         envelopeService.calculatePostalRate(envelope),
                 "The envelope is too wide");
     }
+
+
+
+    //------------------------
+    // LENGTH TESTS
+    //------------------------
+
+    @Test
+    public void testEnvelopeTooSmallLengthInMillimeters() {
+        // Initialize variables (including a too small length) and create an instance of an envelope
+        double width = 100, length = 130, weight = 20;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is not long enough");
+    }
+
+    @Test
+    public void testEnvelopeTooSmallLengthInInches() {
+        // Initialize variables (including a too small length) and create an instance of an envelope
+        double width = 4, length = 5, weight = 20;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is not long enough");
+    }
+
+    @Test
+    public void testEnvelopeTooLargeLengthInMillimeters() {
+        // Initialize variables (including a too large width) and create an instance of an envelope
+        double width = 100, length = 390, weight = 20;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too long");
+    }
+
+    @Test
+    public void testEnvelopeTooLargeLengthInInches() {
+        // Initialize variables (including a too large width) and create an instance of an envelope
+        double width = 4, length = 15, weight = 20;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too long");
+    }
+
+
+
+    //------------------------
+    // WEIGHT TESTS
+    //------------------------
+
     @Test
     public void testEnvelopeTooHeavyInGrams() {
         // Initialize variables (including a too heavy weight) and create an instance of an envelope
