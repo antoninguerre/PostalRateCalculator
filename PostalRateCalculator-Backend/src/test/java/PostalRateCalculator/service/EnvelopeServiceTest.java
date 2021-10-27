@@ -15,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.server.ResponseStatusException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -139,5 +140,109 @@ public class EnvelopeServiceTest {
         assertThrows(ResponseStatusException.class, () ->
                         envelopeService.calculatePostalRate(envelope),
                 "The envelope is too light");
+    }
+
+    @Test
+    public void testStandardLowerPostalRateInchesOunces() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
+        double width = 4.2, length = 6.7, weight = 0.756;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.49, postalRate);
+    }
+
+    @Test
+    public void testStandardLowerPostalRateMillimetersOunces() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
+        double width = 100, length = 150, weight = 1.04;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.49, postalRate);
+    }
+
+    @Test
+    public void testStandardLowerPostalRateMillimetersGrams() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
+        double width = 100, length = 150, weight = 22.5;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.49, postalRate);
+    }
+
+    @Test
+    public void testStandardLowerPostalRateInchesGrams() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
+        double width = 5.03, length = 9.4, weight = 28;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.49, postalRate);
+    }
+
+    @Test
+    public void testStandardHigherPostalRateInchesOunces() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
+        double width = 4.2, length = 6.7, weight = 1.756;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.80, postalRate);
+    }
+
+    @Test
+    public void testStandardHigherPostalRateMillimetersOunces() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
+        double width = 100, length = 150, weight = 1.34;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.80, postalRate);
+    }
+
+    @Test
+    public void testStandardHigherPostalRateMillimetersGrams() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
+        double width = 100, length = 150, weight = 42.5;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.80, postalRate);
+    }
+
+    @Test
+    public void testStandardHigherPostalRateInchesGrams() {
+        // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
+        double width = 5.03, length = 9.4, weight = 38;
+        SizeUnit sizeUnit = SizeUnit.Inches;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        double postalRate = envelopeService.calculatePostalRate(envelope);
+
+        assertEquals(0.80, postalRate);
     }
 }
