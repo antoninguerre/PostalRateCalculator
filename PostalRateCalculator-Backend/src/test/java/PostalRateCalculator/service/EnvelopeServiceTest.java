@@ -48,7 +48,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallWidthInMillimeters() {
         // Initialize variables (including a too small width) and create an instance of an envelope
-        double width = 50, length = 200, weight = 20;
+        double width = 89, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -61,7 +61,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallWidthInInches() {
         // Initialize variables (including a too small width) and create an instance of an envelope
-        double width = 2, length = 8, weight = 20;
+        double width = 3.4, length = 8, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -74,7 +74,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeWidthInMillimeters() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 300, length = 200, weight = 20;
+        double width = 271, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -87,7 +87,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeWidthInInches() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 12, length = 8, weight = 20;
+        double width = 10.7, length = 8, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -104,7 +104,7 @@ public class EnvelopeServiceTest {
     //------------------------
 
     @Test
-    public void testEnvelopeTooSmallLengthInMillimeters() {
+    private void testEnvelopeTooSmallLengthInMillimeters() {
         // Initialize variables (including a too small length) and create an instance of an envelope
         double width = 100, length = 130, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -117,7 +117,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooSmallLengthInInches() {
+    private void testEnvelopeTooSmallLengthInInches() {
         // Initialize variables (including a too small length) and create an instance of an envelope
         double width = 4, length = 5, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
@@ -130,7 +130,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooLargeLengthInMillimeters() {
+    private void testEnvelopeTooLargeLengthInMillimeters() {
         // Initialize variables (including a too large width) and create an instance of an envelope
         double width = 100, length = 390, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -143,7 +143,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooLargeLengthInInches() {
+    private void testEnvelopeTooLargeLengthInInches() {
         // Initialize variables (including a too large width) and create an instance of an envelope
         double width = 4, length = 15, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
@@ -162,7 +162,7 @@ public class EnvelopeServiceTest {
     //------------------------
 
     @Test
-    public void testEnvelopeTooHeavyInGrams() {
+    private void testEnvelopeTooHeavyInGrams() {
         // Initialize variables (including a too heavy weight) and create an instance of an envelope
         double width = 100, length = 200, weight = 600;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -175,7 +175,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooLightInGrams() {
+    private void testEnvelopeTooLightInGrams() {
         // Initialize variables (including a too light weight) and create an instance of an envelope
         double width = 200, length = 250, weight = 2.9;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -188,7 +188,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooHeavyInOunces() {
+    private void testEnvelopeTooHeavyInOunces() {
         // Initialize variables (including a too heavy weight) and create an instance of an envelope
         double width = 200.4, length = 300, weight = 19.4;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -201,7 +201,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testEnvelopeTooLightInOunces() {
+    private void testEnvelopeTooLightInOunces() {
         // Initialize variables (including a too light weight) and create an instance of an envelope
         double width = 12, length = 8, weight = 0.07;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -214,7 +214,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardLowerPostalRateInchesOunces() {
+    private void testStandardLowerPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
         double width = 4.2, length = 6.7, weight = 0.756;
         SizeUnit sizeUnit = SizeUnit.Inches;
@@ -227,7 +227,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardLowerPostalRateMillimetersOunces() {
+    private void testStandardLowerPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
         double width = 100, length = 150, weight = 1.04;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -240,7 +240,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardLowerPostalRateMillimetersGrams() {
+    private void testStandardLowerPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
         double width = 100, length = 150, weight = 22.5;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -253,7 +253,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardLowerPostalRateInchesGrams() {
+    private void testStandardLowerPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
         double width = 5.03, length = 9.4, weight = 28;
         SizeUnit sizeUnit = SizeUnit.Inches;
@@ -266,7 +266,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardHigherPostalRateInchesOunces() {
+    private void testStandardHigherPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
         double width = 4.2, length = 6.7, weight = 1.756;
         SizeUnit sizeUnit = SizeUnit.Inches;
@@ -279,7 +279,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardHigherPostalRateMillimetersOunces() {
+    private void testStandardHigherPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
         double width = 100, length = 150, weight = 1.34;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -292,7 +292,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardHigherPostalRateMillimetersGrams() {
+    private void testStandardHigherPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
         double width = 100, length = 150, weight = 42.5;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
@@ -305,7 +305,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    public void testStandardHigherPostalRateInchesGrams() {
+    private void testStandardHigherPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
         double width = 5.03, length = 9.4, weight = 38;
         SizeUnit sizeUnit = SizeUnit.Inches;
