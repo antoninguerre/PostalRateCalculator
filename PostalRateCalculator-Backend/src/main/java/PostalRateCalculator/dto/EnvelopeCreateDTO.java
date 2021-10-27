@@ -4,19 +4,19 @@ import PostalRateCalculator.model.SizeUnit;
 import PostalRateCalculator.model.WeightUnit;
 
 public class EnvelopeCreateDTO {
-    private int width;
-    private int length;
-    private int weight;
+    private double width;
+    private double length;
+    private double weight;
     private SizeUnit sizeUnit;
     private WeightUnit weightUnit;
 
 
     // Getters
-    public int getWidth() { return width; }
+    public double getWidth() { return width; }
 
-    public int getLength() { return length; }
+    public double getLength() { return length; }
 
-    public int getWeight() { return weight; }
+    public double getWeight() { return weight; }
 
     public SizeUnit getSizeUnit() { return sizeUnit; }
 
@@ -24,11 +24,11 @@ public class EnvelopeCreateDTO {
 
 
     // Setters
-    public void setWidth(int width) { this.width = width; }
+    public void setWidth(double width) { this.width = width; }
 
-    public void setLength(int length) { this.length = length; }
+    public void setLength(double length) { this.length = length; }
 
-    public void setWeight(int weight) { this.weight = weight; }
+    public void setWeight(double weight) { this.weight = weight; }
 
     public void setSizeUnit(SizeUnit sizeUnit) { this.sizeUnit = sizeUnit; }
 

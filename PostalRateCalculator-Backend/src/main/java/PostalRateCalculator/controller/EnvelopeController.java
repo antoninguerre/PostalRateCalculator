@@ -14,6 +14,6 @@ public class EnvelopeController {
 
 
 
-    // The inputs should be RequestParams(int width, int height, int weight, String sizeUnit, String weightUnit)
+    // The inputs should be RequestParams(all Strings)
     // From that we can create an envelope and send it to the service method
 }

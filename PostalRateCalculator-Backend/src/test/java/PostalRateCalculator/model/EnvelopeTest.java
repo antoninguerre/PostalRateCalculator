@@ -26,7 +26,7 @@ public class EnvelopeTest {
     @Test
     public void testEnvelope() {
         // Initialize variables and create an instance of an envelope
-        int width = 100, length = 200, weight = 20;
+        double width = 100, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);

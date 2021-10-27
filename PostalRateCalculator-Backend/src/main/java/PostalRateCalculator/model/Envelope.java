@@ -20,9 +20,9 @@ public class Envelope {
     @GeneratedValue
     private Long id;
 
-    private int width;
-    private int length;
-    private int weight;
+    private double width;
+    private double length;
+    private double weight;
 
     @Enumerated(EnumType.ORDINAL)
     private SizeUnit sizeUnit;
@@ -43,7 +43,7 @@ public class Envelope {
         weightUnit = WeightUnit.Grams;
     }
 
-    public Envelope(int envelopeWidth, int envelopeLength, int envelopeWeight, SizeUnit aSizeUnit, WeightUnit aWeightUnit) {
+    public Envelope(double envelopeWidth, double envelopeLength, double envelopeWeight, SizeUnit aSizeUnit, WeightUnit aWeightUnit) {
         width = envelopeWidth;
         length = envelopeLength;
         weight = envelopeWeight;
@@ -59,11 +59,11 @@ public class Envelope {
     // Getters
     public Long getId() { return id; }
 
-    public int getWidth() { return width; }
+    public double getWidth() { return width; }
 
-    public int getLength() { return length; }
+    public double getLength() { return length; }
 
-    public int getWeight() { return weight; }
+    public double getWeight() { return weight; }
 
     public SizeUnit getSizeUnit() { return sizeUnit; }
 
@@ -73,11 +73,11 @@ public class Envelope {
     // Setters
     public void setId(Long id) { this.id = id; }
 
-    public void setWidth(int width) { this.width = width; }
+    public void setWidth(double width) { this.width = width; }
 
-    public void setLength(int length) { this.length = length; }
+    public void setLength(double length) { this.length = length; }
 
-    public void setWeight(int weight) { this.weight = weight; }
+    public void setWeight(double weight) { this.weight = weight; }
 
     public void setSizeUnit(SizeUnit sizeUnit) { this.sizeUnit = sizeUnit; }
 

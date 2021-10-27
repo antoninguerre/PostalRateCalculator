@@ -41,7 +41,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallWidthInMillimeters() {
         // Initialize variables (including a too small width) and create an instance of an envelope
-        int width = 50, length = 200, weight = 20;
+        double width = 50, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -54,7 +54,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallWidthInInches() {
         // Initialize variables (including a too small width) and create an instance of an envelope
-        int width = 2, length = 8, weight = 20;
+        double width = 2, length = 8, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -67,7 +67,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeWidthInMillimeters() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        int width = 300, length = 200, weight = 20;
+        double width = 300, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -80,7 +80,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeWidthInInches() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        int width = 12, length = 8, weight = 20;
+        double width = 12, length = 8, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
