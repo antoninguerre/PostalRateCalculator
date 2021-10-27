@@ -3,7 +3,7 @@ package PostalRateCalculator.dto;
 import PostalRateCalculator.model.SizeUnit;
 import PostalRateCalculator.model.WeightUnit;
 
-public class EnvelopeCreateDTO {
+public class EnvelopeDTO {
     private double width;
     private double length;
     private double weight;
