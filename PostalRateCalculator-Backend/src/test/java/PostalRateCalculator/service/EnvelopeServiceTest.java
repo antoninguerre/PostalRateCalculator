@@ -105,7 +105,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallLengthInMillimeters() {
         // Initialize variables (including a too small length) and create an instance of an envelope
-        double width = 50, length = 130, weight = 20;
+        double width = 100, length = 130, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -118,7 +118,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooSmallLengthInInches() {
         // Initialize variables (including a too small length) and create an instance of an envelope
-        double width = 2, length = 5, weight = 20;
+        double width = 4, length = 5, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -131,7 +131,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeLengthInMillimeters() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 300, length = 390, weight = 20;
+        double width = 100, length = 390, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -144,7 +144,7 @@ public class EnvelopeServiceTest {
     @Test
     public void testEnvelopeTooLargeLengthInInches() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 12, length = 15, weight = 20;
+        double width = 4, length = 15, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
