@@ -89,4 +89,55 @@ public class EnvelopeServiceTest {
                         envelopeService.calculatePostalRate(envelope),
                 "The envelope is too wide");
     }
+    @Test
+    public void testEnvelopeTooHeavyInGrams() {
+        // Initialize variables (including a too heavy weight) and create an instance of an envelope
+        double width = 100, length = 200, weight = 600;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too heavy");
+    }
+
+    @Test
+    public void testEnvelopeTooLightInGrams() {
+        // Initialize variables (including a too light weight) and create an instance of an envelope
+        double width = 200, length = 250, weight = 2.9;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Grams;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too light");
+    }
+
+    @Test
+    public void testEnvelopeTooHeavyInOunces() {
+        // Initialize variables (including a too heavy weight) and create an instance of an envelope
+        double width = 200.4, length = 300, weight = 19.4;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too heavy");
+    }
+
+    @Test
+    public void testEnvelopeTooLightInOunces() {
+        // Initialize variables (including a too light weight) and create an instance of an envelope
+        double width = 12, length = 8, weight = 0.07;
+        SizeUnit sizeUnit = SizeUnit.Millimeters;
+        WeightUnit weightUnit = WeightUnit.Ounces;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope),
+                "The envelope is too light");
+    }
 }
