@@ -25,7 +25,25 @@ public class EnvelopeController {
                                            @RequestParam(name="sizeUnit") String sizeUnitString,
                                            @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
 
+        double width = syntaxVerification(widthString);
+        double length = syntaxVerification(lengthString);
+        double weight = syntaxVerification(weightString);
+
         return null;
+    }
+
+
+
+    private double syntaxVerification(String inputString) {
+        // Verify that the input can be converted from a String to a double
+        try {
+            Double.parseDouble(inputString);
+        } catch (NumberFormatException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid syntax");
+        }
+        double variable = Double.parseDouble(inputString);
+
+        return variable;
     }
 
 }
