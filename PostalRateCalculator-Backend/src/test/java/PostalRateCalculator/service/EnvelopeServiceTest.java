@@ -104,9 +104,9 @@ public class EnvelopeServiceTest {
     //------------------------
 
     @Test
-    private void testEnvelopeTooSmallLengthInMillimeters() {
+    public void testEnvelopeTooSmallLengthInMillimeters() {
         // Initialize variables (including a too small length) and create an instance of an envelope
-        double width = 100, length = 130, weight = 20;
+        double width = 100, length = 139, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -117,9 +117,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testEnvelopeTooSmallLengthInInches() {
+    public void testEnvelopeTooSmallLengthInInches() {
         // Initialize variables (including a too small length) and create an instance of an envelope
-        double width = 4, length = 5, weight = 20;
+        double width = 7, length = 5.5, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -130,9 +130,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testEnvelopeTooLargeLengthInMillimeters() {
+    public void testEnvelopeTooLargeLengthInMillimeters() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 100, length = 390, weight = 20;
+        double width = 100, length = 381, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -143,9 +143,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testEnvelopeTooLargeLengthInInches() {
+    public void testEnvelopeTooLargeLengthInInches() {
         // Initialize variables (including a too large width) and create an instance of an envelope
-        double width = 4, length = 15, weight = 20;
+        double width = 7, length = 15, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
