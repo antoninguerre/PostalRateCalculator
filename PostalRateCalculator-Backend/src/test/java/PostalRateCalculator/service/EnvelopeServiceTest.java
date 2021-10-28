@@ -118,7 +118,7 @@ public class EnvelopeServiceTest {
 
     @Test
     private void testEnvelopeTooSmallLengthInInches() {
-        // Initialize variables (includ ding a too small length) and create an instance of an envelope
+        // Initialize variables (including a too small length) and create an instance of an envelope
         double width = 4, length = 5, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
