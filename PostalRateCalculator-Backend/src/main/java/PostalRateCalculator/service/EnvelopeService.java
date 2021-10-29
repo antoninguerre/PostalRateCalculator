@@ -3,6 +3,8 @@ package PostalRateCalculator.service;
 import PostalRateCalculator.dao.EnvelopeRepository;
 import PostalRateCalculator.model.Envelope;
 import PostalRateCalculator.model.SizeUnit;
+import PostalRateCalculator.model.WeightUnit;
+import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,7 @@ public class EnvelopeService {
     private EnvelopeRepository envelopeRepository;
 
     @Transactional
-    public int calculatePostalRate(Envelope envelope) {
+    public double calculatePostalRate(Envelope envelope) {
 
         widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
         lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
@@ -47,5 +49,27 @@ public class EnvelopeService {
         if (sizeUnit == SizeUnit.Inches && (length < 5.512 || 14.961 < length)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's length is not within the allowed range.");
         }
+    }
+
+
+    @Transactional
+    public Envelope createEnvelope(String widthString, String lengthString, String weightString, String sizeUnitString, String weightUnitString) {
+        double width = Double.parseDouble(widthString);
+        double length = Double.parseDouble(lengthString);
+        double weight = Double.parseDouble(weightString);
+
+        SizeUnit sizeUnit = null;
+        WeightUnit weightUnit = null;
+
+        if (sizeUnitString.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
+        if (sizeUnitString.equals("in")) { sizeUnit = SizeUnit.Inches; }
+
+        if (weightUnitString.equals("g")) { weightUnit = WeightUnit.Grams; }
+        if (weightUnitString.equals("oz")) { weightUnit = WeightUnit.Ounces; }
+
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+        envelope = envelopeRepository.save(envelope);
+
+        return envelope;
     }
 }

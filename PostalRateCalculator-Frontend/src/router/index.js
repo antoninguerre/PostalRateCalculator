@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import PostalRateCalculator from "../components/PostalRateCalculator";
-import Test from "../components/Test";
 
 Vue.use(Router)
 
@@ -14,3 +13,15 @@ export default new Router({
     }
   ]
 })
+
+import axios from 'axios'
+var config = require('../../config')
+
+var frontendUrl = 'http://' + config.dev.host + ':' + config.dev.port
+var backendUrl = 'http://' + config.dev.backendHost + ':' + config.dev.backendPort
+
+export var AXIOS = axios.create({
+  baseURL: backendUrl,
+  headers: { 'Access-Control-Allow-Origin': frontendUrl }
+})
+
