@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -114,6 +115,7 @@ public class EnvelopeServiceTest {
         assertThrows(ResponseStatusException.class, () ->
                         envelopeService.calculatePostalRate(envelope),
                 "The envelope is not long enough");
+
     }
 
     @Test
@@ -162,55 +164,59 @@ public class EnvelopeServiceTest {
     //------------------------
 
     @Test
-    private void testEnvelopeTooHeavyInGrams() {
+    public void testEnvelopeTooHeavyInGrams() {
         // Initialize variables (including a too heavy weight) and create an instance of an envelope
-        double width = 100, length = 200, weight = 600;
+        double width = 200, length = 300, weight = 600;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too heavy");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's weight is not within the allowed range."));
     }
 
     @Test
-    private void testEnvelopeTooLightInGrams() {
+    public void testEnvelopeTooLightInGrams() {
         // Initialize variables (including a too light weight) and create an instance of an envelope
-        double width = 200, length = 250, weight = 2.9;
+        double width = 200, length = 300, weight = 2.9;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too light");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's weight is not within the allowed range."));
     }
 
     @Test
-    private void testEnvelopeTooHeavyInOunces() {
+    public void testEnvelopeTooHeavyInOunces() {
         // Initialize variables (including a too heavy weight) and create an instance of an envelope
-        double width = 200.4, length = 300, weight = 19.4;
+        double width = 200, length = 300, weight = 19.4;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too heavy");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's weight is not within the allowed range."));
     }
 
     @Test
     private void testEnvelopeTooLightInOunces() {
         // Initialize variables (including a too light weight) and create an instance of an envelope
-        double width = 12, length = 8, weight = 0.07;
+        double width = 200, length = 300, weight = 0.07;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too light");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's weight is not within the allowed range."));
     }
 
     @Test

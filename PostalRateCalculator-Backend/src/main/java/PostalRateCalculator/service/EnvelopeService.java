@@ -3,6 +3,7 @@ package PostalRateCalculator.service;
 import PostalRateCalculator.dao.EnvelopeRepository;
 import PostalRateCalculator.model.Envelope;
 import PostalRateCalculator.model.SizeUnit;
+import PostalRateCalculator.model.WeightUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,20 @@ public class EnvelopeService {
     private EnvelopeRepository envelopeRepository;
 
     @Transactional
-    public int calculatePostalRate(Envelope envelope) {
+    public double calculatePostalRate(Envelope envelope) {
 
         widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
         lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
+
+        // Verify that the envelope's weight is less than 500g if the weight unit is in grams
+        if (envelope.getWeightUnit() == WeightUnit.Grams && envelope.getWeight() > 500) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's weight is not within the allowed range.");
+        }
+
+        // Verify that the envelope's weight is more than 3g if the weight unit is in grams
+        if (envelope.getWeightUnit() == WeightUnit.Grams && envelope.getWeight() < 3) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's weight is not within the allowed range.");
+        }
 
         return 0;
     }
