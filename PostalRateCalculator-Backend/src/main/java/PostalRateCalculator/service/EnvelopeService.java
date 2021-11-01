@@ -16,7 +16,7 @@ public class EnvelopeService {
     private EnvelopeRepository envelopeRepository;
 
     @Transactional
-    public int calculatePostalRate(Envelope envelope) {
+    public double calculatePostalRate(Envelope envelope) {
 
         widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
         lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
