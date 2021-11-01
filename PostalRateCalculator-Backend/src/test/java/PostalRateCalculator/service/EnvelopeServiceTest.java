@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -53,9 +54,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is not wide enough");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's width is not within the allowed range."));
     }
 
     @Test
@@ -66,9 +68,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is not wide enough");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's width is not within the allowed range."));
     }
 
     @Test
@@ -79,9 +82,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too wide");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                        envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's width is not within the allowed range."));
     }
 
     @Test
@@ -92,9 +96,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too wide");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's width is not within the allowed range."));
     }
 
 
@@ -111,9 +116,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is not long enough");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's length is not within the allowed range."));
     }
 
     @Test
@@ -124,9 +130,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is not long enough");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's length is not within the allowed range."));
     }
 
     @Test
@@ -137,9 +144,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too long");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's length is not within the allowed range."));
     }
 
     @Test
@@ -150,9 +158,10 @@ public class EnvelopeServiceTest {
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        assertThrows(ResponseStatusException.class, () ->
-                        envelopeService.calculatePostalRate(envelope),
-                "The envelope is too long");
+        Exception thrownException = assertThrows(ResponseStatusException.class, () ->
+                envelopeService.calculatePostalRate(envelope));
+
+        assertTrue(thrownException.getMessage().contains("The envelope's length is not within the allowed range."));
     }
 
 
