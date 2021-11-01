@@ -206,7 +206,7 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testEnvelopeTooLightInOunces() {
+    public void testEnvelopeTooLightInOunces() {
         // Initialize variables (including a too light weight) and create an instance of an envelope
         double width = 200, length = 300, weight = 0.07;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
