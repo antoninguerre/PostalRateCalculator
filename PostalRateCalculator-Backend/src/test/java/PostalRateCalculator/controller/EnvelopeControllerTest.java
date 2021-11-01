@@ -40,7 +40,7 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid width syntax"));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid length syntax"));
     }
 
     @Test
@@ -74,7 +74,7 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid weight syntax"));
     }
 
 
