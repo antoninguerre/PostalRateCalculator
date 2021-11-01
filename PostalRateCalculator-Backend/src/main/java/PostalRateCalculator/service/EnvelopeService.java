@@ -4,7 +4,6 @@ import PostalRateCalculator.dao.EnvelopeRepository;
 import PostalRateCalculator.model.Envelope;
 import PostalRateCalculator.model.SizeUnit;
 import PostalRateCalculator.model.WeightUnit;
-import org.hibernate.engine.jdbc.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
