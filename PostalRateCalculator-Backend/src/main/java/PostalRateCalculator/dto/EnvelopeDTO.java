@@ -10,6 +10,13 @@ public class EnvelopeDTO {
     private SizeUnit sizeUnit;
     private WeightUnit weightUnit;
 
+    public EnvelopeDTO(double width, double length, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
+        this.width = width;
+        this.length = length;
+        this.weight = weight;
+        this.sizeUnit = sizeUnit;
+        this.weightUnit = weightUnit;
+    }
 
     // Getters
     public double getWidth() { return width; }
