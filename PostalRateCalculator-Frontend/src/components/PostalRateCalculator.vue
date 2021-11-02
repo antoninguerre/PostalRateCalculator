@@ -172,7 +172,7 @@ export default {
           }
 
           if (error.response.data.message.indexOf('syntax') > -1) {
-            this.errorMessage = error.response.data.message + ". Please enter a number."
+            this.errorMessage = error.response.data.message + " Please enter a number."
           }
 
           if (error.response.data.message.indexOf('range') > -1) {

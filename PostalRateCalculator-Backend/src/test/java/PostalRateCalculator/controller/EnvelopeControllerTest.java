@@ -29,7 +29,7 @@ public class EnvelopeControllerTest {
     @Test
     public void testCalculatePostalRateInvalidWidthSyntax() throws Exception{
         // Initialize variables including an invalid width syntax
-        String width = "invalidSyntax@#$", length = "100", weight = "23", sizeUnit = "mm", weightUnit = "in";
+        String width = "invalidSyntax@#$", length = "200", weight = "23", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
         mockMvc.perform(post("/postal_rate_calculator")
@@ -40,12 +40,12 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid width syntax"));
+                .andExpect(status().reason("Invalid width syntax."));
     }
 
     @Test
     public void testCalculatePostalRateInvalidLengthSyntax() throws Exception{
-        // Initialize variables including an invalid width syntax
+        // Initialize variables including an invalid length syntax
         String width = "200", length = "invalidSyntax@#$", weight = "23", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
@@ -57,13 +57,13 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid length syntax"));
+                .andExpect(status().reason("Invalid length syntax."));
     }
 
     @Test
     public void testCalculatePostalRateInvalidWeightSyntax() throws Exception{
-        // Initialize variables including an invalid width syntax
-        String width = "200", length = "100", weight = "invalidSyntax@#$", sizeUnit = "mm", weightUnit = "in";
+        // Initialize variables including an invalid weight syntax
+        String width = "200", length = "200", weight = "invalidSyntax@#$", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
         mockMvc.perform(post("/postal_rate_calculator")
@@ -74,14 +74,77 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid weight syntax"));
+                .andExpect(status().reason("Invalid weight syntax."));
     }
 
+
+    @Test
+    public void testInvalidOrNoSelectedSizeUnit() throws Exception{
+        // Initialize variables including an empty size unit
+        String width = "200", length = "200", weight = "200", emptySizeUnit = "", weightUnit = "g";
+
+        // Try to calculate the postal rate, and expect an error to be thrown
+        mockMvc.perform(post("/postal_rate_calculator")
+                .param("width", width)
+                .param("length", length)
+                .param("weight", weight)
+                .param("sizeUnit", emptySizeUnit)
+                .param("weightUnit", weightUnit)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Invalid or empty size unit."));
+
+        // Initialize an invalid size unit
+        String invalidSizeUnit = "this is not a size unit";
+
+        // Try to calculate the postal rate, and expect an error to be thrown
+        mockMvc.perform(post("/postal_rate_calculator")
+                .param("width", width)
+                .param("length", length)
+                .param("weight", weight)
+                .param("sizeUnit", invalidSizeUnit)
+                .param("weightUnit", weightUnit)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Invalid or empty size unit."));
+    }
+
+
+    @Test
+    public void testInvalidOrNoSelectedWeightUnit() throws Exception{
+        // Initialize variables including an empty weight unit
+        String width = "200", length = "200", weight = "200", sizeUnit = "mm", emptyWeightUnit = "";
+
+        // Try to calculate the postal rate, and expect an error to be thrown
+        mockMvc.perform(post("/postal_rate_calculator")
+                .param("width", width)
+                .param("length", length)
+                .param("weight", weight)
+                .param("sizeUnit", sizeUnit)
+                .param("weightUnit", emptyWeightUnit)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Invalid or empty weight unit."));
+
+        // Initialize an invalid weight unit
+        String invalidWeightUnit = "this is not a weight unit";
+
+        // Try to calculate the postal rate, and expect an error to be thrown
+        mockMvc.perform(post("/postal_rate_calculator")
+                .param("width", width)
+                .param("length", length)
+                .param("weight", weight)
+                .param("sizeUnit", sizeUnit)
+                .param("weightUnit", invalidWeightUnit)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest())
+                .andExpect(status().reason("Invalid or empty weight unit."));
+    }
 
 
     @Test
     private void testCreateEnvelope () throws Exception {
-        String width = "200", length = "100", weight = "100", sizeUnit = "mm", weightUnit = "g";
+        String width = "200", length = "200", weight = "100", sizeUnit = "mm", weightUnit = "g";
 
         mockMvc.perform(post("/envelope")
                 .param("width", width)
