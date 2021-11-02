@@ -1,6 +1,9 @@
 package PostalRateCalculator.controller;
 
 import PostalRateCalculator.dto.EnvelopeDTO;
+import PostalRateCalculator.model.Envelope;
+import PostalRateCalculator.model.SizeUnit;
+import PostalRateCalculator.model.WeightUnit;
 import PostalRateCalculator.service.EnvelopeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,32 +21,45 @@ public class EnvelopeController {
     private EnvelopeService envelopeService;
 
 
-    @PostMapping(path="/postalRateCalculator")
-    public EnvelopeDTO calculatePostalRate(@RequestParam(name="width") String widthString,
+    @PostMapping(path="/postal_rate_calculator")
+    public String calculatePostalRate(@RequestParam(name="width") String widthString,
                                            @RequestParam(name="length") String lengthString,
                                            @RequestParam(name="weight") String weightString,
                                            @RequestParam(name="sizeUnit") String sizeUnitString,
                                            @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
 
-        double width = syntaxVerification(widthString);
-        double length = syntaxVerification(lengthString);
-        double weight = syntaxVerification(weightString);
+        double width = syntaxVerification(widthString, "width");
+        double length = syntaxVerification(lengthString, "length");
+        double weight = syntaxVerification(weightString, "weight");
 
         return null;
     }
 
-
-
-    private double syntaxVerification(String inputString) {
+    private double syntaxVerification(String inputString, String attribute) {
         // Verify that the input can be converted from a String to a double
         try {
             Double.parseDouble(inputString);
         } catch (NumberFormatException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid syntax");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid " + attribute + " syntax");
         }
-        double variable = Double.parseDouble(inputString);
+        return Double.parseDouble(inputString);
+    }
 
-        return variable;
+
+    @PostMapping(path = "/envelope")
+    public EnvelopeDTO createEnvelope(@RequestParam(name="width") String widthString,
+                                      @RequestParam(name="length") String lengthString,
+                                      @RequestParam(name="weight") String weightString,
+                                      @RequestParam(name="sizeUnit") String sizeUnitString,
+                                      @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
+
+        Envelope envelope = envelopeService.createEnvelope(widthString, lengthString, weightString, sizeUnitString, weightUnitString);
+
+        return convertToDTO(envelope);
+    }
+
+    public static EnvelopeDTO convertToDTO(Envelope envelope) {
+        return new EnvelopeDTO(envelope.getWidth(), envelope.getLength(), envelope.getWeight(), envelope.getSizeUnit(), envelope.getWeightUnit());
     }
 
 }

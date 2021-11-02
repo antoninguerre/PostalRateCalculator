@@ -11,6 +11,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @Tag("IntegrationTest")
@@ -31,7 +32,7 @@ public class EnvelopeControllerTest {
         String width = "invalidSyntax@#$", length = "100", weight = "23", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
-        mockMvc.perform(post("/postalRateCalculator")
+        mockMvc.perform(post("/postal_rate_calculator")
                 .param("width", width)
                 .param("length", length)
                 .param("weight", weight)
@@ -39,7 +40,7 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid width syntax"));
     }
 
     @Test
@@ -48,7 +49,7 @@ public class EnvelopeControllerTest {
         String width = "200", length = "invalidSyntax@#$", weight = "23", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
-        mockMvc.perform(post("/postalRateCalculator")
+        mockMvc.perform(post("/postal_rate_calculator")
                 .param("width", width)
                 .param("length", length)
                 .param("weight", weight)
@@ -56,7 +57,7 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid length syntax"));
     }
 
     @Test
@@ -65,7 +66,7 @@ public class EnvelopeControllerTest {
         String width = "200", length = "100", weight = "invalidSyntax@#$", sizeUnit = "mm", weightUnit = "in";
 
         // Try to calculate the postal rate, and expect an error to be thrown
-        mockMvc.perform(post("/postalRateCalculator")
+        mockMvc.perform(post("/postal_rate_calculator")
                 .param("width", width)
                 .param("length", length)
                 .param("weight", weight)
@@ -73,6 +74,23 @@ public class EnvelopeControllerTest {
                 .param("weightUnit", weightUnit)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
-                .andExpect(status().reason("Invalid syntax"));
+                .andExpect(status().reason("Invalid weight syntax"));
+    }
+
+
+
+    @Test
+    private void testCreateEnvelope () throws Exception {
+        String width = "200", length = "100", weight = "100", sizeUnit = "mm", weightUnit = "g";
+
+        mockMvc.perform(post("/envelope")
+                .param("width", width)
+                .param("length", length)
+                .param("weight", weight)
+                .param("sizeUnit", sizeUnit)
+                .param("weightUnit", weightUnit)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(content().json("{\"width\":200.0,\"length\":100.0,\"weight\":100.0,\"sizeUnit\":\"Millimeters\",\"weightUnit\":\"Grams\"}"));
     }
 }
