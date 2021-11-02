@@ -50,17 +50,19 @@ public class EnvelopeController {
     }
 
     private static SizeUnit sizeUnitConversion(String inputUnit) {
-        if (inputUnit.equals("mm")) { return SizeUnit.Millimeters; }
-        if (inputUnit.equals("in")) { return SizeUnit.Inches; }
+        SizeUnit sizeUnit = null;
+        if (inputUnit.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
+        if (inputUnit.equals("in")) { sizeUnit = SizeUnit.Inches; }
 
-        return null;
+        return sizeUnit;
     }
 
     private static WeightUnit weightUnitConversion(String inputUnit) {
-        if (inputUnit.equals("g")) { return WeightUnit.Grams; }
-        if (inputUnit.equals("oz")) { return WeightUnit.Ounces; }
+        WeightUnit weightUnit = null;
+        if (inputUnit.equals("g")) { weightUnit = WeightUnit.Grams; }
+        if (inputUnit.equals("oz")) { weightUnit = WeightUnit.Ounces; }
 
-        return null;
+        return weightUnit;
     }
 
 
