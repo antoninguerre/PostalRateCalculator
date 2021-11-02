@@ -39,30 +39,30 @@ public class EnvelopeController {
         return String.valueOf(envelopeService.calculatePostalRate(envelope));
     }
 
-    private double syntaxVerification(String inputString, String attribute) {
+    private static double syntaxVerification(String inputString, String attribute) {
         // Verify that the input can be converted from a String to a double
         try {
             Double.parseDouble(inputString);
         } catch (NumberFormatException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid " + attribute + " syntax");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid " + attribute + " syntax.");
         }
         return Double.parseDouble(inputString);
     }
 
     private static SizeUnit sizeUnitConversion(String inputUnit) {
-        SizeUnit sizeUnit = null;
-        if (inputUnit.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
-        if (inputUnit.equals("in")) { sizeUnit = SizeUnit.Inches; }
+        // Verify that the input size unit is either "mm", "millimeters", "in" or "inches", and throw an exception otherwise
+        if (inputUnit.equalsIgnoreCase("mm") || inputUnit.equalsIgnoreCase("millimeters")) { return SizeUnit.Millimeters; }
+        if (inputUnit.equalsIgnoreCase("in") || inputUnit.equalsIgnoreCase("inches")) { return SizeUnit.Inches; }
 
-        return sizeUnit;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid or empty size unit.");
     }
 
     private static WeightUnit weightUnitConversion(String inputUnit) {
-        WeightUnit weightUnit = null;
-        if (inputUnit.equals("g")) { weightUnit = WeightUnit.Grams; }
-        if (inputUnit.equals("oz")) { weightUnit = WeightUnit.Ounces; }
+        // Verify that the input weight unit is either "g", "grams", "oz" or "ounces", and throw an exception otherwise
+        if (inputUnit.equalsIgnoreCase("g") || inputUnit.equalsIgnoreCase("grams")) { return WeightUnit.Grams; }
+        if (inputUnit.equalsIgnoreCase("oz") || inputUnit.equalsIgnoreCase("ounces")) { return WeightUnit.Ounces; }
 
-        return weightUnit;
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid or empty weight unit.");
     }
 
 
