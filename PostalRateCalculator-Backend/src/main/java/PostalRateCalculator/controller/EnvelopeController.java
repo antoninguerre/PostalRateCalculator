@@ -31,8 +31,12 @@ public class EnvelopeController {
         double width = syntaxVerification(widthString, "width");
         double length = syntaxVerification(lengthString, "length");
         double weight = syntaxVerification(weightString, "weight");
+        SizeUnit sizeUnit = sizeUnitConversion(sizeUnitString);
+        WeightUnit weightUnit = weightUnitConversion(weightUnitString);
 
-        return null;
+        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+
+        return String.valueOf(envelopeService.calculatePostalRate(envelope));
     }
 
     private double syntaxVerification(String inputString, String attribute) {
@@ -45,21 +49,35 @@ public class EnvelopeController {
         return Double.parseDouble(inputString);
     }
 
+    private static SizeUnit sizeUnitConversion(String inputUnit) {
+        if (inputUnit.equals("mm")) { return SizeUnit.Millimeters; }
+        if (inputUnit.equals("in")) { return SizeUnit.Inches; }
 
-    @PostMapping(path = "/envelope")
-    public EnvelopeDTO createEnvelope(@RequestParam(name="width") String widthString,
-                                      @RequestParam(name="length") String lengthString,
-                                      @RequestParam(name="weight") String weightString,
-                                      @RequestParam(name="sizeUnit") String sizeUnitString,
-                                      @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
-
-        Envelope envelope = envelopeService.createEnvelope(widthString, lengthString, weightString, sizeUnitString, weightUnitString);
-
-        return convertToDTO(envelope);
+        return null;
     }
 
-    public static EnvelopeDTO convertToDTO(Envelope envelope) {
-        return new EnvelopeDTO(envelope.getWidth(), envelope.getLength(), envelope.getWeight(), envelope.getSizeUnit(), envelope.getWeightUnit());
+    private static WeightUnit weightUnitConversion(String inputUnit) {
+        if (inputUnit.equals("g")) { return WeightUnit.Grams; }
+        if (inputUnit.equals("oz")) { return WeightUnit.Ounces; }
+
+        return null;
     }
+
+
+//    @PostMapping(path = "/envelope")
+//    public EnvelopeDTO createEnvelope(@RequestParam(name="width") String widthString,
+//                                      @RequestParam(name="length") String lengthString,
+//                                      @RequestParam(name="weight") String weightString,
+//                                      @RequestParam(name="sizeUnit") String sizeUnitString,
+//                                      @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
+//
+//        Envelope envelope = envelopeService.createEnvelope(widthString, lengthString, weightString, sizeUnitString, weightUnitString);
+//
+//        return convertToDTO(envelope);
+//    }
+//
+//    public static EnvelopeDTO convertToDTO(Envelope envelope) {
+//        return new EnvelopeDTO(envelope.getWidth(), envelope.getLength(), envelope.getWeight(), envelope.getSizeUnit(), envelope.getWeightUnit());
+//    }
 
 }
