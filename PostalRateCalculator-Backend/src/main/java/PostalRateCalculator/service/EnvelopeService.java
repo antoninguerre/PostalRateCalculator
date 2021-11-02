@@ -65,24 +65,24 @@ public class EnvelopeService {
 
 
 
-    @Transactional
-    public Envelope createEnvelope(String widthString, String lengthString, String weightString, String sizeUnitString, String weightUnitString) {
-        double width = Double.parseDouble(widthString);
-        double length = Double.parseDouble(lengthString);
-        double weight = Double.parseDouble(weightString);
-
-        SizeUnit sizeUnit = null;
-        WeightUnit weightUnit = null;
-
-        if (sizeUnitString.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
-        if (sizeUnitString.equals("in")) { sizeUnit = SizeUnit.Inches; }
-
-        if (weightUnitString.equals("g")) { weightUnit = WeightUnit.Grams; }
-        if (weightUnitString.equals("oz")) { weightUnit = WeightUnit.Ounces; }
-
-        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
-        envelope = envelopeRepository.save(envelope);
-
-        return envelope;
-    }
+    //@Transactional
+//    private Envelope createEnvelope(String widthString, String lengthString, String weightString, String sizeUnitString, String weightUnitString) {
+//        double width = Double.parseDouble(widthString);
+//        double length = Double.parseDouble(lengthString);
+//        double weight = Double.parseDouble(weightString);
+//
+//        SizeUnit sizeUnit = null;
+//        WeightUnit weightUnit = null;
+//
+//        if (sizeUnitString.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
+//        if (sizeUnitString.equals("in")) { sizeUnit = SizeUnit.Inches; }
+//
+//        if (weightUnitString.equals("g")) { weightUnit = WeightUnit.Grams; }
+//        if (weightUnitString.equals("oz")) { weightUnit = WeightUnit.Ounces; }
+//
+//        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
+//        envelope = envelopeRepository.save(envelope);
+//
+//        return envelope;
+//    }
 }
