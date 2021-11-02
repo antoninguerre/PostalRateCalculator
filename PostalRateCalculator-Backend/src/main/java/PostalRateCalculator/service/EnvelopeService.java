@@ -21,6 +21,7 @@ public class EnvelopeService {
 
         widthRangeCheck(envelope.getWidth(), envelope.getSizeUnit());
         lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
+        weightRangeCheck(envelope.getWeight(), envelope.getWeightUnit());
 
         return 0;
     }
@@ -49,6 +50,19 @@ public class EnvelopeService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's length is not within the allowed range.");
         }
     }
+
+    private static void weightRangeCheck(double weight, WeightUnit weightUnit) {
+        // Verify that the envelope's weight is between 3 and 500 g if the weight unit is in grams
+        if (weightUnit == WeightUnit.Grams && (weight < 3 || 500 < weight)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's weight is not within the allowed range.");
+        }
+
+        // Verify that the envelope's weight is between 0.106 and 17.637 oz if the weight unit is in ounces
+        if (weightUnit == WeightUnit.Ounces && (weight < 0.106 || 17.637 < weight)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's weight is not within the allowed range.");
+        }
+    }
+
 
 
     @Transactional
