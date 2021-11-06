@@ -79,7 +79,7 @@ public class EnvelopeControllerTest {
 
 
     @Test
-    public void testInvalidOrNoSelectedSizeUnit() throws Exception{
+    private void testInvalidOrNoSelectedSizeUnit() throws Exception{
         // Initialize variables including an empty size unit
         String width = "200", length = "200", weight = "200", emptySizeUnit = "", weightUnit = "g";
 
@@ -111,7 +111,7 @@ public class EnvelopeControllerTest {
 
 
     @Test
-    public void testInvalidOrNoSelectedWeightUnit() throws Exception{
+    private void testInvalidOrNoSelectedWeightUnit() throws Exception{
         // Initialize variables including an empty weight unit
         String width = "200", length = "200", weight = "200", sizeUnit = "mm", emptyWeightUnit = "";
 

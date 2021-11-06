@@ -23,6 +23,28 @@ public class EnvelopeService {
         lengthRangeCheck(envelope.getLength(), envelope.getSizeUnit());
         weightRangeCheck(envelope.getWeight(), envelope.getWeightUnit());
 
+        SizeUnit envelopeSizeUnit = envelope.getSizeUnit();
+        WeightUnit envelopeWeightUnit = envelope.getWeightUnit();
+
+        double envelopeLength = envelope.getLength();
+        double envelopeWidth = envelope.getWidth();
+        double envelopeWeight = envelope.getWeight();
+
+        // Check if envelope is in the standard format and meets the lower rate requirements
+        boolean isStandardLower = false;
+        isStandardLower = standardLowerCheck(envelopeLength, envelopeWidth, envelopeWeight, envelopeSizeUnit, envelopeWeightUnit);
+        if (isStandardLower) {
+            return 0.49;
+        }
+
+        // Check if envelope is in the standard format and meets the higher rate requirements
+        boolean isStandardHigher = false;
+        isStandardHigher = standardHigherCheck(envelopeLength, envelopeWidth, envelopeWeight, envelopeSizeUnit, envelopeWeightUnit);
+        if (isStandardHigher) {
+            return 0.80;
+        }
+
+
         return 0;
     }
 
@@ -61,6 +83,54 @@ public class EnvelopeService {
         if (weightUnit == WeightUnit.Ounces && (weight < 0.106 || 17.637 < weight)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The envelope's weight is not within the allowed range.");
         }
+    }
+
+    private static boolean standardLowerCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
+        // Check if the envelope fits the standard lower rate class
+
+        boolean isStandardLower = false ;
+
+        if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length >= 5.512 && length <= 9.646)
+                && (width >= 3.543 && width <= 6.142) && (weight >= 0.106 && weight <= 1.06)) {
+            isStandardLower = true;
+        }
+        if (sizeUnit == SizeUnit.Millimeters && weightUnit == WeightUnit.Ounces && (length >= 140 && length <= 245)
+                && (width >= 90 && width <= 156) && (weight >= 0.106 && weight <= 1.06)) {
+            isStandardLower = true;
+        }
+        if (sizeUnit == SizeUnit.Millimeters && weightUnit == WeightUnit.Grams && (length >= 140 && length <= 245)
+                && (width >= 90 && width <= 156) && (weight >= 3 && weight <= 30)) {
+            isStandardLower = true;
+        }
+        if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Grams && (length >= 5.512 && length <= 9.646)
+                && (width >= 3.543 && width <= 6.142) && (weight >= 3 && weight <= 30)) {
+            isStandardLower = true;
+        }
+        return isStandardLower;
+    }
+
+    private static boolean standardHigherCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
+        // Check if the envelope fits the standard higher rate class
+
+        boolean isStandardHigher = false ;
+
+        if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length >= 5.512 && length <= 9.646)
+                && (width >= 3.543 && width <= 6.142) && (weight > 1.06 && weight <= 1.764)) {
+            isStandardHigher = true;
+        }
+        if (sizeUnit == SizeUnit.Millimeters && weightUnit == WeightUnit.Ounces && (length >= 140 && length <= 245)
+                && (width >= 90 && width <= 156) && (weight > 1.06 && weight <= 1.764)) {
+            isStandardHigher = true;
+        }
+        if (sizeUnit == SizeUnit.Millimeters && weightUnit == WeightUnit.Grams && (length >= 140 && length <= 245)
+                && (width >= 90 && width <= 156) && (weight > 30 && weight <= 50)) {
+            isStandardHigher = true;
+        }
+        if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Grams && (length >= 5.512 && length <= 9.646)
+                && (width >= 3.543 && width <= 6.142) && (weight > 30 && weight <= 50)) {
+            isStandardHigher = true;
+        }
+        return isStandardHigher;
     }
 
 

@@ -231,9 +231,9 @@ public class EnvelopeServiceTest {
     //------------------------
 
     @Test
-    private void testStandardLowerPostalRateInchesOunces() {
+    public void testStandardLowerPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
-        double width = 4.2, length = 6.7, weight = 0.756;
+        double width = 4.0, length = 6.0, weight = 0.800;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -244,9 +244,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardLowerPostalRateMillimetersOunces() {
+    public void testStandardLowerPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
-        double width = 100, length = 150, weight = 1.04;
+        double width = 100, length = 200, weight = 0.800;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -257,9 +257,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardLowerPostalRateMillimetersGrams() {
+    public void testStandardLowerPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
-        double width = 100, length = 150, weight = 22.5;
+        double width = 100, length = 200, weight = 20.0;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -270,9 +270,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardLowerPostalRateInchesGrams() {
+    public void testStandardLowerPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the lower weight range
-        double width = 5.03, length = 9.4, weight = 28;
+        double width = 4.0, length = 6.0, weight = 20.0;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -283,9 +283,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardHigherPostalRateInchesOunces() {
+    public void testStandardHigherPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
-        double width = 4.2, length = 6.7, weight = 1.756;
+        double width = 4.0, length = 6.0, weight = 1.50;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -296,9 +296,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardHigherPostalRateMillimetersOunces() {
+    public void testStandardHigherPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
-        double width = 100, length = 150, weight = 1.34;
+        double width = 100, length = 200, weight = 1.50;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -309,9 +309,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardHigherPostalRateMillimetersGrams() {
+    public void testStandardHigherPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
-        double width = 100, length = 150, weight = 42.5;
+        double width = 100, length = 200, weight = 40.0;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -322,9 +322,9 @@ public class EnvelopeServiceTest {
     }
 
     @Test
-    private void testStandardHigherPostalRateInchesGrams() {
+    public void testStandardHigherPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created standard envelope in the higher weight range
-        double width = 5.03, length = 9.4, weight = 38;
+        double width = 4.0, length = 6.0, weight = 40.0;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -337,7 +337,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardLowerPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the lower weight range
-        double width = 6.2, length = 10.23, weight = 2.756;
+        double width = 7.50, length = 12.5, weight = 2.50;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -350,7 +350,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardLowerPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the lower weight range
-        double width = 200, length = 350, weight = 3.04;
+        double width = 200, length = 350, weight = 2.50;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -363,7 +363,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardLowerPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the lower weight range
-        double width = 200, length = 350, weight = 72.5;
+        double width = 200, length = 350, weight = 75.0;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -376,7 +376,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardLowerPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the lower weight range
-        double width = 9.03, length = 12.4, weight = 88;
+        double width = 7.5, length = 12.5, weight = 75.0;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -389,7 +389,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardHigherPostalRateInchesOunces() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the higher weight range
-        double width = 7.2, length = 12.7, weight = 10.756;
+        double width = 7.5, length = 12.5, weight = 14.0;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -402,7 +402,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardHigherPostalRateMillimetersOunces() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the higher weight range
-        double width = 200, length = 350, weight = 11.34;
+        double width = 200, length = 350, weight = 14.0;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Ounces;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -415,7 +415,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardHigherPostalRateMillimetersGrams() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the higher weight range
-        double width = 200, length = 350, weight = 420.5;
+        double width = 200, length = 350, weight = 400.0;
         SizeUnit sizeUnit = SizeUnit.Millimeters;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
@@ -428,7 +428,7 @@ public class EnvelopeServiceTest {
     @Test
     private void testNonStandardHigherPostalRateInchesGrams() {
         // Check that the outputted postal rate is the correct one for the created non-standard envelope in the higher weight range
-        double width = 9.03, length = 13.4, weight = 338;
+        double width = 7.5, length = 12.5, weight = 400.0;
         SizeUnit sizeUnit = SizeUnit.Inches;
         WeightUnit weightUnit = WeightUnit.Grams;
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
