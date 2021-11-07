@@ -62,3 +62,7 @@ as your current directory, perform the following steps:
 Once this builds, the Postal Rate Calculator is accessible at localhost port 8087. This site will make requests against 
 the localhost server mentioned above.<br>
 To run the application with the backend, make sure PostgreSQL and the PostalRateApplication class are running.
+<br/><br/><br/>
+
+
+# Application Demo
