@@ -9,6 +9,7 @@ This is an application that computes the postal rates of standard and non-standa
 
 # Running the Backend
 ## Component Versions
+- IDE: Intellij Idea Ultimate Edition
 - Gradle: version 6.8.3
 - JDK: version 14.0.2
 - PostgreSQL: version 13.2
@@ -66,3 +67,5 @@ To run the application with the backend, make sure PostgreSQL and the PostalRate
 
 
 # Application Demo
+
+https://user-images.githubusercontent.com/71234445/140685444-fe3a8f33-0fc3-4b16-8d36-a2096765a7f9.mov
