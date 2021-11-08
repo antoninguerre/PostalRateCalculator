@@ -7,6 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class PostalRateCalculatorApplicationTest {
 
     @Test
-    private void contextLoads() {}
+    public void contextLoads() {}
 
 }

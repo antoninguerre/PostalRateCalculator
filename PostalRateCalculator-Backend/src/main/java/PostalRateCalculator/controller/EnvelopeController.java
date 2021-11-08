@@ -1,6 +1,5 @@
 package PostalRateCalculator.controller;
 
-import PostalRateCalculator.dto.EnvelopeDTO;
 import PostalRateCalculator.model.Envelope;
 import PostalRateCalculator.model.SizeUnit;
 import PostalRateCalculator.model.WeightUnit;
@@ -20,7 +19,6 @@ public class EnvelopeController {
     @Autowired
     private EnvelopeService envelopeService;
 
-
     @PostMapping(path="/postal_rate_calculator")
     public String calculatePostalRate(@RequestParam(name="width") String widthString,
                                            @RequestParam(name="length") String lengthString,
@@ -36,7 +34,15 @@ public class EnvelopeController {
 
         Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
 
-        return String.valueOf(envelopeService.calculatePostalRate(envelope));
+        String message;
+
+        if (envelopeService.calculatePostalRate(envelope) == 0) {
+            message = "There is no postal rate associated with this envelope.";
+        } else {
+            message = "The postal rate for this envelope is: " + envelopeService.calculatePostalRate(envelope) + " dollars.";
+        }
+
+        return message;
     }
 
     private static double syntaxVerification(String inputString, String attribute) {
@@ -64,22 +70,4 @@ public class EnvelopeController {
 
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid or empty weight unit.");
     }
-
-
-//    @PostMapping(path = "/envelope")
-//    public EnvelopeDTO createEnvelope(@RequestParam(name="width") String widthString,
-//                                      @RequestParam(name="length") String lengthString,
-//                                      @RequestParam(name="weight") String weightString,
-//                                      @RequestParam(name="sizeUnit") String sizeUnitString,
-//                                      @RequestParam(name="weightUnit") String weightUnitString) throws ResponseStatusException {
-//
-//        Envelope envelope = envelopeService.createEnvelope(widthString, lengthString, weightString, sizeUnitString, weightUnitString);
-//
-//        return convertToDTO(envelope);
-//    }
-//
-//    public static EnvelopeDTO convertToDTO(Envelope envelope) {
-//        return new EnvelopeDTO(envelope.getWidth(), envelope.getLength(), envelope.getWeight(), envelope.getSizeUnit(), envelope.getWeightUnit());
-//    }
-
 }

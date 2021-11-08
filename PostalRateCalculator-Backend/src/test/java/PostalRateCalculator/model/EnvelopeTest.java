@@ -24,7 +24,7 @@ public class EnvelopeTest {
     }
 
     @Test
-    private void testEnvelope() {
+    public void testEnvelope() {
         // Initialize variables and create an instance of an envelope
         double width = 100, length = 200, weight = 20;
         SizeUnit sizeUnit = SizeUnit.Millimeters;

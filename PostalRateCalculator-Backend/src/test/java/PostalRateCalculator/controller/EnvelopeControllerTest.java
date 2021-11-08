@@ -1,6 +1,5 @@
 package PostalRateCalculator.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +21,6 @@ public class EnvelopeControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Test
     public void testCalculatePostalRateInvalidWidthSyntax() throws Exception{
@@ -60,6 +56,7 @@ public class EnvelopeControllerTest {
                 .andExpect(status().reason("Invalid length syntax."));
     }
 
+
     @Test
     public void testCalculatePostalRateInvalidWeightSyntax() throws Exception{
         // Initialize variables including an invalid weight syntax
@@ -79,7 +76,7 @@ public class EnvelopeControllerTest {
 
 
     @Test
-    private void testInvalidOrNoSelectedSizeUnit() throws Exception{
+    public void testInvalidOrNoSelectedSizeUnit() throws Exception{
         // Initialize variables including an empty size unit
         String width = "200", length = "200", weight = "200", emptySizeUnit = "", weightUnit = "g";
 
@@ -111,7 +108,7 @@ public class EnvelopeControllerTest {
 
 
     @Test
-    private void testInvalidOrNoSelectedWeightUnit() throws Exception{
+    public void testInvalidOrNoSelectedWeightUnit() throws Exception{
         // Initialize variables including an empty weight unit
         String width = "200", length = "200", weight = "200", sizeUnit = "mm", emptyWeightUnit = "";
 
@@ -139,21 +136,5 @@ public class EnvelopeControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(status().reason("Invalid or empty weight unit."));
-    }
-
-
-    @Test
-    private void testCreateEnvelope () throws Exception {
-        String width = "200", length = "200", weight = "100", sizeUnit = "mm", weightUnit = "g";
-
-        mockMvc.perform(post("/envelope")
-                .param("width", width)
-                .param("length", length)
-                .param("weight", weight)
-                .param("sizeUnit", sizeUnit)
-                .param("weightUnit", weightUnit)
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(content().json("{\"width\":200.0,\"length\":100.0,\"weight\":100.0,\"sizeUnit\":\"Millimeters\",\"weightUnit\":\"Grams\"}"));
     }
 }

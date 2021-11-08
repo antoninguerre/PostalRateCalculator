@@ -1,10 +1,8 @@
 package PostalRateCalculator.service;
 
-import PostalRateCalculator.dao.EnvelopeRepository;
 import PostalRateCalculator.model.Envelope;
 import PostalRateCalculator.model.SizeUnit;
 import PostalRateCalculator.model.WeightUnit;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +10,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class EnvelopeService {
-
-    @Autowired
-    private EnvelopeRepository envelopeRepository;
 
     @Transactional
     public double calculatePostalRate(Envelope envelope) {
@@ -92,7 +87,6 @@ public class EnvelopeService {
 
     private static boolean standardLowerCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
         // Check if the envelope fits the standard lower rate class
-
         boolean isStandardLower = false ;
 
         if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length >= 5.512 && length <= 9.646)
@@ -116,7 +110,6 @@ public class EnvelopeService {
 
     private static boolean standardHigherCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
         // Check if the envelope fits the standard higher rate class
-
         boolean isStandardHigher = false ;
 
         if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length >= 5.512 && length <= 9.646)
@@ -140,7 +133,6 @@ public class EnvelopeService {
 
     private static boolean nonStandardLowerCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
         // Check if the envelope fits the standard lower rate class
-
         boolean isNonStandardLower = false ;
 
         if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length > 9.646 && length <= 14.961)
@@ -164,7 +156,6 @@ public class EnvelopeService {
 
     private static boolean nonStandardHigherCheck(double length, double width, double weight, SizeUnit sizeUnit, WeightUnit weightUnit) {
         // Check if the envelope fits the standard lower rate class
-
         boolean isNonStandardHigher = false ;
 
         if (sizeUnit == SizeUnit.Inches && weightUnit == WeightUnit.Ounces && (length > 9.646 && length <= 14.961)
@@ -185,27 +176,4 @@ public class EnvelopeService {
         }
         return isNonStandardHigher;
     }
-
-
-
-    //@Transactional
-//    private Envelope createEnvelope(String widthString, String lengthString, String weightString, String sizeUnitString, String weightUnitString) {
-//        double width = Double.parseDouble(widthString);
-//        double length = Double.parseDouble(lengthString);
-//        double weight = Double.parseDouble(weightString);
-//
-//        SizeUnit sizeUnit = null;
-//        WeightUnit weightUnit = null;
-//
-//        if (sizeUnitString.equals("mm")) { sizeUnit = SizeUnit.Millimeters; }
-//        if (sizeUnitString.equals("in")) { sizeUnit = SizeUnit.Inches; }
-//
-//        if (weightUnitString.equals("g")) { weightUnit = WeightUnit.Grams; }
-//        if (weightUnitString.equals("oz")) { weightUnit = WeightUnit.Ounces; }
-//
-//        Envelope envelope = new Envelope(width, length, weight, sizeUnit, weightUnit);
-//        envelope = envelopeRepository.save(envelope);
-//
-//        return envelope;
-//    }
 }

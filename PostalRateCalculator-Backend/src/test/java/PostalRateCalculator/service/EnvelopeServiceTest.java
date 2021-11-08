@@ -37,7 +37,7 @@ public class EnvelopeServiceTest {
             return invocation.getArgument(0);
         };
 
-        when(envelopeRepository.save(any(Envelope.class))).thenAnswer(returnParameterAsAnswer);
+        //when(envelopeRepository.save(any(Envelope.class))).thenAnswer(returnParameterAsAnswer);
     }
 
 

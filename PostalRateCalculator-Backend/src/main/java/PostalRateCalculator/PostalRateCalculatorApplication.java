@@ -11,10 +11,8 @@ public class PostalRateCalculatorApplication {
 
     public static void main(String[] args) { SpringApplication.run(PostalRateCalculatorApplication.class, args); }
 
-    // Use a request mapping to indicate that when the user navigates to this page
-    // that the user will see this. Typically this is used to return information
     @RequestMapping("/")
     public String greeting(){
-        return "Hello world!";
+        return "The Postal Rate Calculator application's backend is running!";
     }
 }

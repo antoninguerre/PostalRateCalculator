@@ -152,8 +152,10 @@ export default {
       })
         .then(response => {
           console.log(response.data)
-          this.successMessageVisibility = true
-          this.successMessage = "The postal rate for this envelope is: " + response.data + " dollars."
+
+            this.successMessageVisibility = true
+            this.successMessage = response.data
+
         })
         .catch(error => {
           console.log(error.response.data.message)
