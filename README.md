@@ -24,7 +24,7 @@ Once the project has been imported from GitHub and all the mentioned components 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="270" alt="Screen Shot 2021-11-06 at 7 03 56 PM" src="https://user-images.githubusercontent.com/71234445/140626300-4b2326dc-e2e6-44be-a040-ab0349c07993.png">
 
 ### pgAdmin 4
-Throught pgAdmin, a new server group called "localhost" can be created if it does not already exist. In this server group, a new "Login/Group Role" can be created. It must be given all privileges.
+Throught pgAdmin, a new server called "localhost" can be created if it does not already exist. In this server, a new "Login/Group Role" can be created. It must be given all privileges.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width="459" alt="Screen Shot 2021-11-06 at 7 02 13 PM" src="https://user-images.githubusercontent.com/71234445/140626269-9df9e89d-06b5-4f6a-bf1c-69997529dcd1.png">
 
